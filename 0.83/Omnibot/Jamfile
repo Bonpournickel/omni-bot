@@ -31,19 +31,22 @@ project Omnibot
 	 <variant>debug:<define>_DEBUG
 	 <variant>release:<define>NDEBUG
 	 <address-model>64:<cflags>-fPIC
+  <address-model>64:<cflags>-Wl,-rpath=/usr/lib64 <cflags>-Wl,--format=elf64-x86-64
+  <address-model>32:<cflags>-fPIC <cflags>-Wl,--format=elf32-i386
+  <address-model>32:<cflags>-Wl,-rpath=/usr/lib
 	;
 
 # define external libs
-lib boost_filesystem : : <variant>release <file>$(BOOST_LIB)/libboost_filesystem$(BOOST_SUFFIX).a ;
-lib boost_regex : : <variant>release <file>$(BOOST_LIB)/libboost_regex$(BOOST_SUFFIX).a ;
-lib boost_date_time : : <variant>release <file>$(BOOST_LIB)/libboost_date_time$(BOOST_SUFFIX).a ;
-lib boost_system : : <variant>release <file>$(BOOST_LIB)/libboost_system$(BOOST_SUFFIX).a ;
+lib boost_filesystem : : <variant>release <file>$(BOOST_LIB)/libboost_filesystem$(BOOST_SUFFIX).so ;
+lib boost_regex : : <variant>release <file>$(BOOST_LIB)/libboost_regex$(BOOST_SUFFIX).so ;
+lib boost_date_time : : <variant>release <file>$(BOOST_LIB)/libboost_date_time$(BOOST_SUFFIX).so ;
+lib boost_system : : <variant>release <file>$(BOOST_LIB)/libboost_system$(BOOST_SUFFIX).so ;
 
 # define aliases for convenience and to force static linking
-alias boost_fs : boost_filesystem : <link>static ;
-alias boost_regx : boost_regex : <link>static ;
-alias boost_dt : boost_date_time : <link>static ;
-alias boost_sys : boost_system : <link>static ;
+alias boost_fs : boost_filesystem : <link>shared ;
+alias boost_regx : boost_regex : <link>shared ;
+alias boost_dt : boost_date_time : <link>shared ;
+alias boost_sys : boost_system : <link>shared ;
 
 # target suffix
 rule tag ( name : type ? : property-set )
@@ -65,7 +68,7 @@ rule tag ( name : type ? : property-set )
 build-project Common ; 
 #build-project MC ;
 build-project ET ;
-build-project RTCW ; 
+#build-project RTCW ; 
 #build-project TeamFortressLib ; 
 #build-project FF ; 
 #build-project D3 ; 

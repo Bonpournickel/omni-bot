@@ -17,4 +17,4 @@ alias common_lib : ..//Common : <link>static ;
 
 SOURCES = [ glob *.cpp : TF2_BatchBuild.cpp ] ../Common/BotExports.cpp ..//boost_fs ..//boost_regx ..//boost_th ..//boost_dt common_lib ;
 
-lib omnibot_flf : $(SOURCES) : <toolset>gcc:<cflags>-w <cflags>-pthread <linkflags>-pthread <cflags>-ffriend-injection ;
+lib omnibot_flf : $(SOURCES) : <toolset>gcc:<cflags>-w <cflags>-pthread <linkflags>-pthread <cflags>-fPIC ;

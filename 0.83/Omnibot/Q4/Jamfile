@@ -16,4 +16,4 @@ alias common_lib : ..//Common : <link>static ;
 
 SOURCES = [ glob *.cpp : Q4_BatchBuild.cpp ] ../Common/BotExports.cpp ..//boost_fs ..//boost_regx ..//boost_th ..//boost_dt common_lib ;
 
-lib omnibot_q4 : $(SOURCES) : <toolset>gcc:<cflags>-w <cflags>-pthread <linkflags>-pthread <cflags>-ffriend-injection ;
+lib omnibot_q4 : $(SOURCES) : <toolset>gcc:<cflags>-w <cflags>-pthread <linkflags>-pthread <cflags>-fPIC ;

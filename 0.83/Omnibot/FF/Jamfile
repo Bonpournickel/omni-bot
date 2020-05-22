@@ -18,4 +18,4 @@ alias tf_lib : ..//TeamFortressLib : <link>static ;
 
 SOURCES = [ glob *.cpp : FF_BatchBuild.cpp ] ../Common/BotExports.cpp ..//boost_fs ..//boost_regx ..//boost_th ..//boost_dt common_lib tf_lib ;
 
-lib omnibot_ff : $(SOURCES) : <toolset>gcc:<cflags>-w <cflags>-pthread <linkflags>-pthread <cflags>-ffriend-injection ;
+lib omnibot_ff : $(SOURCES) : <toolset>gcc:<cflags>-w <cflags>-pthread <linkflags>-pthread <cflags>-fPIC ;
